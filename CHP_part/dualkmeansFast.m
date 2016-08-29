@@ -8,7 +8,7 @@ function f = dualkmeansFast(K,N,idx)
 % K = the kernel matrix
 % N = the number of clusters desired
 % sigma =
-% idx =
+% idx = contains the indexes of the centroids among the Nr Points
 %
 %OUTPUTS
 % f = the cluster allocation vector
