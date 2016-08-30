@@ -249,13 +249,17 @@ function btn_go_debug_Callback(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-lePath = 'C:\Users\gfarina\Dropbox\De la Universidad\2015.2\Investigación Laber\Distance Functions and Ranking\!ANODI! - Matlab\ComparingGSAlgorithms\DataCSV\';
-% lePath = 'C:\Users\gfarina\Dropbox\De la Universidad\2015.2\Investigación Laber\Distance Functions and Ranking\!ANODI! - Matlab\ComparingGSAlgorithms\DataCSV'
+% original path!!!
+% lePath = 'C:\Users\gfarina\Dropbox\De la Universidad\2015.2\Investigación Laber\Distance Functions and Ranking\!ANODI! - Matlab\ComparingGSAlgorithms\DataCSV\';
+% secondary path!
+lePath = 'C:\Users\gfarina\Desktop\Realizations\ti_strebelle.sgems\';
+
 
 path_A1 = [lePath 'CSV1'];
 path_A2 = [lePath 'CSV2'];
 path_A3  = [lePath 'CSV3'];
-fullPath_TI = [lePath 'strebelle 101x101 BW.bmp'];
+% fullPath_TI = [lePath 'strebelle 101x101 BW.bmp'];
+fullPath_TI = [lePath 'ti_strebelle.sgems'];
 
 hEditPatt = findobj('Tag', 'edit_pattern_size');
 str_pat_size = get(hEditPatt,'String');

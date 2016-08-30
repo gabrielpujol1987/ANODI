@@ -18,10 +18,10 @@ addpath([dirName1 '\ComparingGSAlgorithms\Data']);
 % DistanceMatrix1=calculateModelVar_MPH(realization1,out,10);
 
 %% 3D binary case
-clear all;
-load 'Ti_3Dchannel.mat';
-load 'CCSIM_3D_binary.mat';
-realization1=reshape(Final,69,69,39,50);
+% clear all;
+% load 'Ti_3Dchannel.mat';
+% load 'CCSIM_3D_binary.mat';
+% realization1=reshape(Final,69,69,39,50);
 % % easy to be out of memory, may need to preallocate the memory
 % DistanceMatrix2=calculate3DModelVar_MPH(realization1,out,10);
 
