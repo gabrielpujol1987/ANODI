@@ -5,8 +5,8 @@ close all;
 
 fp1      = mfilename('fullpath');
 dirName1 = fileparts(fp1);
-slash1   = strfind(dirName1, '\');
-dirName1 = dirName1(1:slash1(end)-1);
+% slash1   = strfind(dirName1, '\');
+% dirName1 = dirName1(1:slash1(end)-1);
 addpath([dirName1 '\ComparingGSAlgorithms\Data']);
 
 %% 2D binary case
@@ -49,25 +49,28 @@ addpath([dirName1 '\ComparingGSAlgorithms\Data']);
 
 
 %% show 2D case 
-% clear all;
-% load full_cluster_DISPAT_new.mat;
-% DisMtrx1=JS_Pyramid2;
-% load full_cluster_CCSIM_new.mat;
-% DisMtrx2=JS_Pyramid2;
-% load full_cluster_SISIM_new.mat;
-% DisMtrx3=JS_Pyramid2;
-% 
-% load 'Ti_channel.mat';
-% % realizations
-% load 'realization_dispat.mat';
-% re1=realization1;
-% load 'CCSIM_new.mat';
-% re2=reshape(Final,101,101,50);
-% load 'sisim_channel.mat';
-% re3=realization1;
+clear all;
+load full_cluster_DISPAT_new.mat;
+DisMtrx1=JS_Pyramid2;
+load full_cluster_CCSIM_new.mat;
+DisMtrx2=JS_Pyramid2;
+load full_cluster_SISIM_new.mat;
+DisMtrx3=JS_Pyramid2;
 
-%show2DModelVar2(DisMtrx1,DisMtrx2,out,re1,re2);
+load 'Ti_channel.mat';
+% realizations
+load 'realization_dispat.mat';
+re1=realization1;
+load 'CCSIM_new.mat';
+re2=reshape(Final,101,101,50);
+load 'sisim_channel.mat';
+re3=realization1;
+
+show2DModelVar2(DisMtrx1,DisMtrx2,out,re1,re2);
 % show2DModelVar3(DisMtrx1,DisMtrx2,DisMtrx3,out,re1,re2,re3);
+
+
+
 %% show 3D case
 % clear all;
 % load JS_DISPATMV3D.mat;
