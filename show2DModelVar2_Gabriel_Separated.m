@@ -17,7 +17,7 @@ num_re2 = size(DisMtrx2, 3);
 % num_re3 = size(DisMtrx3, 3);
 
 % The scales of the points to be plotted for each algorithm.
-standardScale = 20;	mediumScale = 30;	 bigScale = 100;
+standardScale = 20;			bigScale = 100;
 S1 = standardScale*ones(1, num_re1); S1(num_re1) = bigScale; % last is TI
 S2 = standardScale*ones(1, num_re2); S2(num_re2) = bigScale; % last is TI
 % S3 = standardScale*ones(1, num_re3+1); S3(num_re3+1) = bigScale; % last is TI
@@ -85,25 +85,25 @@ for ii = 1:1		% size(resolutions, 2);
 	scatter3(x_re2, y_re2, z_re2, S2, 'b', 'filled');	% SECOND DATA PLOTTED!!!
 	
 	%% WORKING WITH THE THIRD DISTANCE MATRIX!!!
-	% set ddd to the DisMatrix corresponding to the current resolution
-	ddd = squeeze(DisMtrx3(current_resolution, :, :));
-	% get the new Coordinates for the n points in a new p-dimensional space
-	% along with the EigenValues (first k are positive if matrix euclidean)
-	[Y1_re3, e_re3] = cmdscale(double(ddd));
-	
-	% get the new coordinates for every point, for plotting reasons...
-	x_re3 = Y1_re3(:, 1);
-	y_re3 = Y1_re3(:, 2);
-	z_re3 = Y1_re3(:, 3);
-	% Centering the coordinates around the Training Image:
-	x_re3 = x_re3 - x_re3(num_re1);
-	y_re3 = y_re3 - y_re3(num_re1);
-	z_re3 = z_re3 - z_re3(num_re1);
-	
-	% Positions of the 'sorted' list, according to the distances to the TI
-	[~, IX3] = sort(ddd(num_re3, :));
-	% Plotting
-	scatter3(x_re3, y_re3, z_re3, S3, 'r', 'filled');	% THIRD DATA PLOTTED!!!
+% 	% set ddd to the DisMatrix corresponding to the current resolution
+% 	ddd = squeeze(DisMtrx3(current_resolution, :, :));
+% 	% get the new Coordinates for the n points in a new p-dimensional space
+% 	% along with the EigenValues (first k are positive if matrix euclidean)
+% 	[Y1_re3, e_re3] = cmdscale(double(ddd));
+% 	
+% 	% get the new coordinates for every point, for plotting reasons...
+% 	x_re3 = Y1_re3(:, 1);
+% 	y_re3 = Y1_re3(:, 2);
+% 	z_re3 = Y1_re3(:, 3);
+% 	% Centering the coordinates around the Training Image:
+% 	x_re3 = x_re3 - x_re3(num_re1);
+% 	y_re3 = y_re3 - y_re3(num_re1);
+% 	z_re3 = z_re3 - z_re3(num_re1);
+% 	
+% 	% Positions of the 'sorted' list, according to the distances to the TI
+% 	[~, IX3] = sort(ddd(num_re3, :));
+% 	% Plotting
+% 	scatter3(x_re3, y_re3, z_re3, S3, 'r', 'filled');	% THIRD DATA PLOTTED!!!
 	
 	%% putting the labels to the special points
 	text(x_re1(IX1( 2)),y_re1(IX1( 2)),z_re1(IX1( 2)),'\rightarrow  1','FontSize',10,'Color','g');
@@ -232,6 +232,97 @@ for ii = 1:1		% size(resolutions, 2);
 	hold off;
 	
 	
-end	 % for ii = 1:num_max_resolutions
+	%% the closest guys, of the first set of points.
+	figure;
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	subplot(2,3,1);
+	out_c = realizations1(:,:,IX1(1));
+	out1 = imresize(out_c,1/current_resolution); 
+	level = graythresh(out1);
+	out1 = im2bw(out1, level);
+	imshow(out1);
+	title(['TI: ' NomTI ]);%', MR = ' int2str(current_resolution)]);
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	subplot(2,3,2);
+	out_c = realizations1(:,:,IX1(2));
+	out1 = imresize(out_c,1/current_resolution); 
+	level = graythresh(out1);
+	out1 = im2bw(out1, level);
+	imshow(out1);
+	title('closest to TI');
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	for kk = 1:4
+		subplot(2,3,kk+2);
+		out_c = realizations1(:,:,IX1(11+10*kk));
+		out1 = imresize(out_c,1/current_resolution); 
+		level = graythresh(out1);
+		out1 = im2bw(out1, level);
+		imshow(out1);
+		title([int2str(11+10*kk-1) 'th closest to TI'] );
+	end
 
-end
+
+	%% the closest guys, of the second set of points.
+	figure;
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	subplot(2,3,1);
+	out_c = realizations2(:,:,IX2(1));
+	out1 = imresize(out_c,1/current_resolution);
+	level = graythresh(out1);
+	out1 = im2bw(out1, level);
+	imshow(out1);
+	title(['TI: ' NomTI ]);%', MR = ' int2str(current_resolution)]);
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	subplot(2,3,2);
+	out_c = realizations2(:,:,IX2(2));
+	out1 = imresize(out_c,1/current_resolution);
+	level = graythresh(out1);
+	out1 = im2bw(out1, level);
+	imshow(out1);
+	title('closest to TI');
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	for kk = 1:4
+		subplot(2,3,kk+2);
+		out_c = realizations2(:,:,IX2(11+10*kk));
+		out1 = imresize(out_c,1/current_resolution);
+		level = graythresh(out1);
+		out1 = im2bw(out1, level);
+		imshow(out1);
+		title([int2str(11+10*kk-1) 'th closest to TI'] );
+	end
+
+
+	%% the closest guys, of the third set of points.
+% 	figure;
+% 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 	subplot(2,3,1);
+% 	out_c = realizations3(:,:,IX3(1));
+% 	out1 = imresize(out_c,1/current_resolution);
+% 	level = graythresh(out1);
+% 	out1 = im2bw(out1, level);
+% 	imshow(out1);
+% 	title(['Ti, SISIM, MR = ' int2str(current_resolution)]);
+% 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 	subplot(2,3,2);
+% 	out_c = realizations3(:,:,IX3(2));
+% 	out1 = imresize(out_c,1/current_resolution);
+% 	level = graythresh(out1);
+% 	out1 = im2bw(out1, level);
+% 	imshow(out1);
+% 	title('closest to Ti');
+% 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 	for kk = 1:4
+% 		subplot(2,3,kk+2);
+% 		out_c = realizations3(:,:,IX3(11+10*kk));
+% 		out1 = imresize(out_c,1/current_resolution);
+% 		level = graythresh(out1);
+% 		out1 = im2bw(out1, level);
+% 		imshow(out1);
+% 		title([int2str(11+10*kk-1) 'th closest to Ti'] );
+% 	end
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	
+	
+end		% end of for
+
+end		% end of function
