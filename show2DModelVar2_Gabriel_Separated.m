@@ -106,25 +106,21 @@ for ii = 1:1		% size(resolutions, 2);
 % 	% Plotting
 % 	scatter3(x_re3, y_re3, z_re3, S3, 'r', 'filled');	% THIRD DATA PLOTTED!!!
 	
-	%% putting the labels to the special points
-	text(x_re1(IX1( 2)),y_re1(IX1( 2)),z_re1(IX1( 2)),'\rightarrow  1','FontSize',10,'Color','g');
-	text(x_re1(IX1(21)),y_re1(IX1(21)),z_re1(IX1(21)),'\rightarrow 20','FontSize',10,'Color','g');
-	text(x_re1(IX1(31)),y_re1(IX1(31)),z_re1(IX1(31)),'\rightarrow 30','FontSize',10,'Color','g');
-	text(x_re1(IX1(41)),y_re1(IX1(41)),z_re1(IX1(41)),'\rightarrow 40','FontSize',10,'Color','g');
-	text(x_re1(IX1(51)),y_re1(IX1(51)),z_re1(IX1(51)),'\rightarrow 50','FontSize',10,'Color','g');
-	
-	text(x_re2(IX2( 2)),y_re2(IX2( 2)),z_re2(IX2( 2)),'\rightarrow  1','FontSize',10,'Color','b');
-	text(x_re2(IX2(21)),y_re2(IX2(21)),z_re2(IX2(21)),'\rightarrow 20','FontSize',10,'Color','b');
-	text(x_re2(IX2(31)),y_re2(IX2(31)),z_re2(IX2(31)),'\rightarrow 30','FontSize',10,'Color','b');
-	text(x_re2(IX2(41)),y_re2(IX2(41)),z_re2(IX2(41)),'\rightarrow 40','FontSize',10,'Color','b');
-	text(x_re2(IX2(51)),y_re2(IX2(51)),z_re2(IX2(51)),'\rightarrow 50','FontSize',10,'Color','b');
-	
-%	text(x_re3(IX3( 2)),y_re3(IX3( 2)),z_re3(IX3( 2)),'\rightarrow  1','FontSize',10,'Color','r');
-%	text(x_re3(IX3(21)),y_re3(IX3(21)),z_re3(IX3(21)),'\rightarrow 20','FontSize',10,'Color','r');
-%	text(x_re3(IX3(31)),y_re3(IX3(31)),z_re3(IX3(31)),'\rightarrow 30','FontSize',10,'Color','r');
-%	text(x_re3(IX3(41)),y_re3(IX3(41)),z_re3(IX3(41)),'\rightarrow 40','FontSize',10,'Color','r');
-%	text(x_re3(IX3(51)),y_re3(IX3(51)),z_re3(IX3(51)),'\rightarrow 50','FontSize',10,'Color','r');
 
+	%% Preparing the label-text-writing variables:
+	
+	labels = [1 20 30 40 50];
+	indices1 = IX1(labels + 1);
+	indices2 = IX2(labels + 1);
+% 	indices3 = IX3(labels + 1);
+
+
+	%% putting the labels to the special points
+	printText3D_Gabriel(x_re1, y_re1, z_re1, indices1, labels, 'g');
+	printText3D_Gabriel(x_re2, y_re2, z_re2, indices2, labels, 'b');
+% 	printText3D_Gabriel(x_re3, y_re3, z_re3, indices3, labels, 'r');
+
+	
 	%% PLOTTING THE LEGEND!!!
 	scatter3(0, 0, 0, bigScale, 'k', 'filled');						% Training image re-plotted for visibility!
 	legend(NomTI, NomAlg1, NomAlg2);				% Legend...
@@ -142,23 +138,9 @@ for ii = 1:1		% size(resolutions, 2);
 % 	scatter(x_re3, y_re3, S3, 'r', 'filled');
 
 	% putting the labels to the special points
-	text(x_re1(IX1( 2)),y_re1(IX1( 2)),'\rightarrow  1','FontSize',10,'Color','g');
-	text(x_re1(IX1(21)),y_re1(IX1(21)),'\rightarrow 20','FontSize',10,'Color','g');
-	text(x_re1(IX1(31)),y_re1(IX1(31)),'\rightarrow 30','FontSize',10,'Color','g');
-	text(x_re1(IX1(41)),y_re1(IX1(41)),'\rightarrow 40','FontSize',10,'Color','g');
-	text(x_re1(IX1(51)),y_re1(IX1(51)),'\rightarrow 50','FontSize',10,'Color','g');
-	
-	text(x_re2(IX2( 2)),y_re2(IX2( 2)),'\rightarrow  1','FontSize',10,'Color','b');
-	text(x_re2(IX2(21)),y_re2(IX2(21)),'\rightarrow 20','FontSize',10,'Color','b');
-	text(x_re2(IX2(31)),y_re2(IX2(31)),'\rightarrow 30','FontSize',10,'Color','b');
-	text(x_re2(IX2(41)),y_re2(IX2(41)),'\rightarrow 40','FontSize',10,'Color','b');
-	text(x_re2(IX2(51)),y_re2(IX2(51)),'\rightarrow 50','FontSize',10,'Color','b');
-	
-%	text(x_re3(IX3( 2)),y_re3(IX3( 2)),'\rightarrow  1','FontSize',10,'Color','r');
-%	text(x_re3(IX3(21)),y_re3(IX3(21)),'\rightarrow 20','FontSize',10,'Color','r');
-%	text(x_re3(IX3(31)),y_re3(IX3(31)),'\rightarrow 30','FontSize',10,'Color','r');
-%	text(x_re3(IX3(41)),y_re3(IX3(41)),'\rightarrow 40','FontSize',10,'Color','r');
-%	text(x_re3(IX3(51)),y_re3(IX3(51)),'\rightarrow 50','FontSize',10,'Color','r');
+	printText2D_Gabriel(x_re1, y_re1, indices1, labels, 'g');
+	printText2D_Gabriel(x_re2, y_re2, indices2, labels, 'b');
+% 	printText2D_Gabriel(x_re3, y_re3, indices3, labels, 'r');
 	
 	% ending of the plot
 	scatter(0, 0, 100, 'k', 'filled');
@@ -177,23 +159,9 @@ for ii = 1:1		% size(resolutions, 2);
 % 	scatter(x_re3, z_re3, S3, 'r', 'filled');
 	
 	% putting the labels to the special points
-	text(x_re1(IX1( 2)),z_re1(IX1( 2)),'\rightarrow 1','FontSize',10,'Color','g');
-	text(x_re1(IX1(21)),z_re1(IX1(21)),'\rightarrow 20','FontSize',10,'Color','g');
-	text(x_re1(IX1(31)),z_re1(IX1(31)),'\rightarrow 30','FontSize',10,'Color','g');
-	text(x_re1(IX1(41)),z_re1(IX1(41)),'\rightarrow 40','FontSize',10,'Color','g');
-	text(x_re1(IX1(51)),z_re1(IX1(51)),'\rightarrow 50','FontSize',10,'Color','g');
-	
-	text(x_re2(IX2( 2)),z_re2(IX2( 2)),'\rightarrow 1','FontSize',10,'Color','b');
-	text(x_re2(IX2(21)),z_re2(IX2(21)),'\rightarrow 20','FontSize',10,'Color','b');
-	text(x_re2(IX2(31)),z_re2(IX2(31)),'\rightarrow 30','FontSize',10,'Color','b');
-	text(x_re2(IX2(41)),z_re2(IX2(41)),'\rightarrow 40','FontSize',10,'Color','b');
-	text(x_re2(IX2(51)),z_re2(IX2(51)),'\rightarrow 50','FontSize',10,'Color','b');
-	
-%	text(x_re3(IX3( 2)),z_re3(IX3( 2)),'\rightarrow 1','FontSize',10,'Color','r');
-%	text(x_re3(IX3(21)),z_re3(IX3(21)),'\rightarrow 20','FontSize',10,'Color','r');
-%	text(x_re3(IX3(31)),z_re3(IX3(31)),'\rightarrow 30','FontSize',10,'Color','r');
-%	text(x_re3(IX3(41)),z_re3(IX3(41)),'\rightarrow 40','FontSize',10,'Color','r');
-%	text(x_re3(IX3(51)),z_re3(IX3(51)),'\rightarrow 50','FontSize',10,'Color','r');
+	printText2D_Gabriel(x_re1, z_re1, indices1, labels, 'g');
+	printText2D_Gabriel(x_re2, z_re2, indices2, labels, 'b');
+% 	printText2D_Gabriel(x_re3, z_re3, indices3, labels, 'r');
 	
 	% ending of the plot
 	scatter(0, 0, 100, 'k', 'filled');
@@ -210,23 +178,9 @@ for ii = 1:1		% size(resolutions, 2);
 % 	scatter(y_re3, z_re3, S3, 'r', 'filled');
 
 	% putting the labels to the special points
-	text(y_re1(IX1( 2)),z_re1(IX1( 2)),'\rightarrow 1','FontSize',10,'Color','g');
-	text(y_re1(IX1(21)),z_re1(IX1(21)),'\rightarrow 20','FontSize',10,'Color','g');
-	text(y_re1(IX1(31)),z_re1(IX1(31)),'\rightarrow 30','FontSize',10,'Color','g');
-	text(y_re1(IX1(41)),z_re1(IX1(41)),'\rightarrow 40','FontSize',10,'Color','g');
-	text(y_re1(IX1(51)),z_re1(IX1(51)),'\rightarrow 50','FontSize',10,'Color','g');
-	
-	text(y_re2(IX2( 2)),z_re2(IX2( 2)),'\rightarrow 1','FontSize',10,'Color','b');
-	text(y_re2(IX2(21)),z_re2(IX2(21)),'\rightarrow 20','FontSize',10,'Color','b');
-	text(y_re2(IX2(31)),z_re2(IX2(31)),'\rightarrow 30','FontSize',10,'Color','b');
-	text(y_re2(IX2(41)),z_re2(IX2(41)),'\rightarrow 40','FontSize',10,'Color','b');
-	text(y_re2(IX2(51)),z_re2(IX2(51)),'\rightarrow 50','FontSize',10,'Color','b');
-	
-%	text(y_re3(IX3( 2)),z_re3(IX3( 2)),'\rightarrow 1','FontSize',10,'Color','r');
-%	text(y_re3(IX3(21)),z_re3(IX3(21)),'\rightarrow 20','FontSize',10,'Color','r');
-%	text(y_re3(IX3(31)),z_re3(IX3(31)),'\rightarrow 30','FontSize',10,'Color','r');
-%	text(y_re3(IX3(41)),z_re3(IX3(41)),'\rightarrow 40','FontSize',10,'Color','r');
-%	text(y_re3(IX3(51)),z_re3(IX3(51)),'\rightarrow 50','FontSize',10,'Color','r');
+	printText2D_Gabriel(y_re1, z_re1, indices1, labels, 'g');
+	printText2D_Gabriel(y_re2, z_re2, indices2, labels, 'b');
+% 	printText2D_Gabriel(y_re3, z_re3, indices3, labels, 'r');
 	
 	% ending of the plot
 	scatter(0, 0, 100, 'k', 'filled');
