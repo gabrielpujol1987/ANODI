@@ -1,4 +1,4 @@
-function show2DModelVar3_Gabriel_Separated(DisMtrx1, DisMtrx2, DisMtrx3, TrainigImage, realizations1, realizations2, realizations3, NomTI, NomAlg1, NomAlg2, NomAlg3)
+function show2DModelVar3_Gabriel_Separated(DisMtrx1, DisMtrx2, DisMtrx3, TrainingImage, realizations1, realizations2, realizations3, NomTI, NomAlg1, NomAlg2, NomAlg3)
 % this function is used for 2D case
 
 % show the variability of the three sets of realizations
@@ -22,15 +22,15 @@ S1 = standardScale*ones(1, num_re1); S1(num_re1) = bigScale; % last is TI
 S2 = standardScale*ones(1, num_re2); S2(num_re2) = bigScale; % last is TI
 S3 = standardScale*ones(1, num_re3); S3(num_re3) = bigScale; % last is TI
 
+resizedTI = imresize(TrainingImage, [size(realizations1, 1) size(realizations1, 2)]);
 
 %% Including the Training Image into the collections of Realizations
-realizations1(:, :, num_re1) = TrainigImage;
-realizations2(:, :, num_re2) = TrainigImage;
-realizations3(:, :, num_re3) = TrainigImage;
+realizations1(:, :, num_re1) = resizedTI;	% TrainigImage;
+realizations2(:, :, num_re2) = resizedTI;	% TrainigImage;
+realizations3(:, :, num_re3) = resizedTI;	% TrainigImage;
 
 %% Set of resolutions that will be worked.
 resolutions = [1, 2, 3, 4, 6];
-
 
 for ii = 1:1		% size(resolutions, 2);
 	%% starting the plot, for each resolution:

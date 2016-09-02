@@ -31,8 +31,6 @@ parS.Dimx = nxS;
 parS.Dimy = nyS;
 parS.Dimz = nzS;
 
-
-
 % Classify patterns
 [XS, YS, eS, ~, idxS, prototypeS, MDistMtrxS] = MYclassifyPatterns(training_image_original, parS);
 parS.clus = size(prototypeS,1);
@@ -50,6 +48,11 @@ HS = zeros(parS.clus,num_realizations+1);
 parS.mx = 1;
 parS.my = 1;
 parS.mz = 1;
+% Included the Dimension of the Realizations (crashed in CompHistRea)
+parS.Dimx = size(realizations,1);
+parS.Dimy = size(realizations,2);
+parS.Dimz = 1;%size(realizations,3);
+
 
 for i = 1:num_realizations
 	[HS(:,i), npatS] = CompHistRea(reaS(:,:,i), prototypeS, parS);

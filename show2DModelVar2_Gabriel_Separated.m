@@ -1,4 +1,4 @@
-function show2DModelVar2_Gabriel_Separated(DisMtrx1, DisMtrx2, TrainigImage, realizations1, realizations2, NomTI, NomAlg1, NomAlg2)
+function show2DModelVar2_Gabriel_Separated(DisMtrx1, DisMtrx2, TrainingImage, realizations1, realizations2, NomTI, NomAlg1, NomAlg2)
 % this function is used for 2D case
 
 % show the variability of the two sets of realizations
@@ -22,11 +22,12 @@ S1 = standardScale*ones(1, num_re1); S1(num_re1) = bigScale; % last is TI
 S2 = standardScale*ones(1, num_re2); S2(num_re2) = bigScale; % last is TI
 % S3 = standardScale*ones(1, num_re3+1); S3(num_re3+1) = bigScale; % last is TI
 
+resizedTI = imresize(TrainingImage, [size(realizations1, 1) size(realizations1, 2)]);
 
 %% Including the Training Image into the collections of Realizations
-realizations1(:, :, num_re1) = TrainigImage;
-realizations2(:, :, num_re2) = TrainigImage;
-% realizations3(:, :, num_re3) = TrainigImage;
+realizations1(:, :, num_re1) = resizedTI;	% TrainigImage;
+realizations2(:, :, num_re2) = resizedTI;	% TrainigImage;
+% realizations3(:, :, num_re3) = resizedTI;	% TrainigImage;
 
 %% Set of resolutions that will be worked.
 resolutions = [1, 2, 3, 4, 6];
@@ -163,6 +164,8 @@ for ii = 1:1		% size(resolutions, 2);
 	scatter(0, 0, 100, 'k', 'filled');
 	title(['x-y Plot & Multi Scale = ' int2str(current_resolution)]);
 	legend(NomAlg1, NomAlg2, NomTI);
+% 	xlabel(num2str(e_re1(1)));		%	X=1	Y=2	Z=3
+% 	ylabel(num2str(e_re1(2)));
 	hold off;
 		
 	
