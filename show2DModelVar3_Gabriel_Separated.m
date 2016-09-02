@@ -18,9 +18,9 @@ num_re3 = size(DisMtrx3, 3);
 
 % The scales of the points to be plotted for each algorithm.
 standardScale = 20;			bigScale = 100;
-S1 = standardScale*ones(1, num_re1); S1(num_re1) = bigScale; % last is TI
-S2 = standardScale*ones(1, num_re2); S2(num_re2) = bigScale; % last is TI
-S3 = standardScale*ones(1, num_re3); S3(num_re3) = bigScale; % last is TI
+S1 = standardScale*ones(1, num_re1); %S1(num_re1) = bigScale; % last is TI
+S2 = standardScale*ones(1, num_re2); %S2(num_re2) = bigScale; % last is TI
+S3 = standardScale*ones(1, num_re3); %S3(num_re3) = bigScale; % last is TI
 
 resizedTI = imresize(TrainingImage, [size(realizations1, 1) size(realizations1, 2)]);
 
@@ -45,7 +45,7 @@ for ii = 1:1		% size(resolutions, 2);
 	%% WORKING WITH THE FIRST DISTANCE MATRIX!!!
 	% set ddd to the DisMatrix corresponding to the current resolution
 	ddd = squeeze(DisMtrx1(current_resolution, :, :));
-			
+
 	% get the new Coordinates for the n points in a new p-dimensional space
 	% along with the EigenValues (first k are positive if matrix euclidean)
 	[Y1_re1, e_re1] = cmdscale(double(ddd));	% e_re1
@@ -79,7 +79,7 @@ for ii = 1:1		% size(resolutions, 2);
 	x_re2 = x_re2 - x_re2(num_re1);
 	y_re2 = y_re2 - y_re2(num_re1);
 	z_re2 = z_re2 - z_re2(num_re1);
-	
+
 	% Positions of the 'sorted' list, according to the distances to the TI
 	[~, IX2] = sort(ddd(num_re2, :));
 	% Plotting
@@ -108,17 +108,26 @@ for ii = 1:1		% size(resolutions, 2);
 	
 
 	%% Preparing the label-text-writing variables:
+	labels1 = 0:10:num_re1;
+	labels1(1) = 1;
+	labels1(size(labels1,2)+1) = num_re1-1;
+	indices1 = IX1(labels1 + 1);
 	
-	labels = [1 20 30 40 50];
-	indices1 = IX1(labels + 1);
-	indices2 = IX2(labels + 1);
-	indices3 = IX3(labels + 1);
+	labels2 = 0:10:num_re2;
+	labels2(1) = 1;
+	labels2(size(labels2,2)+1) = num_re2-1;
+	indices2 = IX2(labels2 + 1);
+	
+	labels3 = 0:10:num_re3;
+	labels3(1) = 1;
+	labels3(size(labels3,2)+1) = num_re3-1;
+	indices3 = IX3(labels3 + 1);
 
 
 	%% putting the labels to the special points
-	printText3D_Gabriel(x_re1, y_re1, z_re1, indices1, labels, 'g');
-	printText3D_Gabriel(x_re2, y_re2, z_re2, indices2, labels, 'b');
-	printText3D_Gabriel(x_re3, y_re3, z_re3, indices3, labels, 'r');
+	printText3D_Gabriel(x_re1, y_re1, z_re1, indices1, labels1, 'g');
+	printText3D_Gabriel(x_re2, y_re2, z_re2, indices2, labels2, 'b');
+	printText3D_Gabriel(x_re3, y_re3, z_re3, indices3, labels3, 'r');
 
 
 	%% PLOTTING THE LEGEND!!!
@@ -129,28 +138,26 @@ for ii = 1:1		% size(resolutions, 2);
 	
 	
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-	
+
 	%% X-Y Plot!!!
 	figure('Name', 'X-Y Plot', 'NumberTitle', 'off');
 	scatter(x_re1, y_re1, S1, 'g', 'filled');
 	hold on;
 	scatter(x_re2, y_re2, S2, 'b', 'filled');
 	scatter(x_re3, y_re3, S3, 'r', 'filled');
-	
+
 	% putting the labels to the special points
-	printText2D_Gabriel(x_re1, y_re1, indices1, labels, 'g');
-	printText2D_Gabriel(x_re2, y_re2, indices2, labels, 'b');
-	printText2D_Gabriel(x_re3, y_re3, indices3, labels, 'r');
-		
+	printText2D_Gabriel(x_re1, y_re1, indices1, labels1, 'g');
+	printText2D_Gabriel(x_re2, y_re2, indices2, labels2, 'b');
+	printText2D_Gabriel(x_re3, y_re3, indices3, labels3, 'r');
+
 	% ending of the plot
 	scatter(0, 0, 100, 'k', 'filled');
 	title(['x-y Plot & Multi Scale = ' int2str(current_resolution)]);
 	legend(NomAlg1, NomAlg2, NomAlg3, NomTI);
-
-	
 	hold off;
-	
-	
+
+
 	%% X-Z Plot!!!
 	figure('Name', 'X-Z Plot', 'NumberTitle', 'off');
 	scatter(x_re1, z_re1, S1, 'g', 'filled');
@@ -159,9 +166,9 @@ for ii = 1:1		% size(resolutions, 2);
 	scatter(x_re3, z_re3, S3, 'r', 'filled');
 	
 	% putting the labels to the special points
-	printText2D_Gabriel(x_re1, z_re1, indices1, labels, 'g');
-	printText2D_Gabriel(x_re2, z_re2, indices2, labels, 'b');
-	printText2D_Gabriel(x_re3, z_re3, indices3, labels, 'r');
+	printText2D_Gabriel(x_re1, z_re1, indices1, labels1, 'g');
+	printText2D_Gabriel(x_re2, z_re2, indices2, labels2, 'b');
+	printText2D_Gabriel(x_re3, z_re3, indices3, labels3, 'r');
 	
 	% ending of the plot
 	scatter(0, 0, 100, 'k', 'filled');
@@ -176,11 +183,11 @@ for ii = 1:1		% size(resolutions, 2);
 	hold on;
 	scatter(y_re2, z_re2, S2, 'b', 'filled');
 	scatter(y_re3, z_re3, S3, 'r', 'filled');
-	
+
 	% putting the labels to the special points
-	printText2D_Gabriel(y_re1, z_re1, indices1, labels, 'g');
-	printText2D_Gabriel(y_re2, z_re2, indices2, labels, 'b');
-	printText2D_Gabriel(y_re3, z_re3, indices3, labels, 'r');
+	printText2D_Gabriel(y_re1, z_re1, indices1, labels1, 'g');
+	printText2D_Gabriel(y_re2, z_re2, indices2, labels2, 'b');
+	printText2D_Gabriel(y_re3, z_re3, indices3, labels3, 'r');
 	
 	% ending of the plot
 	scatter(0, 0, 100, 'k', 'filled');
@@ -190,7 +197,7 @@ for ii = 1:1		% size(resolutions, 2);
 	
 	
 	%% the closest guys, of the first set of points.
-	figure;
+	figure('Name', ['Closest to ' NomAlg1], 'NumberTitle', 'off');
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	subplot(2,3,1);
 	out_c = realizations1(:,:,IX1(1));
@@ -198,7 +205,7 @@ for ii = 1:1		% size(resolutions, 2);
 	level = graythresh(out1);
 	out1 = im2bw(out1, level);
 	imshow(out1);
-	title(['TI: ' NomTI ]);%', MR = ' int2str(current_resolution)]);
+	title(['TI: ' NomTI ]);
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	subplot(2,3,2);
 	out_c = realizations1(:,:,IX1(2));
@@ -208,19 +215,27 @@ for ii = 1:1		% size(resolutions, 2);
 	imshow(out1);
 	title('closest to TI');
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-	for kk = 1:4
+	for kk = 1:min(3,fix(num_re1/10))
 		subplot(2,3,kk+2);
-		out_c = realizations1(:,:,IX1(11+10*kk));
+		out_c = realizations1(:,:,IX1(1+10*kk));
 		out1 = imresize(out_c,1/current_resolution); 
 		level = graythresh(out1);
 		out1 = im2bw(out1, level);
 		imshow(out1);
-		title([int2str(11+10*kk-1) 'th closest to TI'] );
+		title([int2str(1+10*kk-1) 'th closest to TI'] );
 	end
-
+	% the farthest one...
+	subplot(2,3,6);
+	out_c = realizations1(:,:,IX1(end));
+	out1 = imresize(out_c,1/current_resolution); 
+	level = graythresh(out1);
+	out1 = im2bw(out1, level);
+	imshow(out1);
+	title(['Farthest to TI, ' num2str(num_re1-1) '-th']);
+	
 
 	%% the closest guys, of the second set of points.
-	figure;
+	figure('Name', ['Closest to ' NomAlg2], 'NumberTitle', 'off');
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	subplot(2,3,1);
 	out_c = realizations2(:,:,IX2(1));
@@ -238,19 +253,27 @@ for ii = 1:1		% size(resolutions, 2);
 	imshow(out1);
 	title('closest to TI');
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-	for kk = 1:4
+	for kk = 1:min(3,fix(num_re2/10))
 		subplot(2,3,kk+2);
-		out_c = realizations2(:,:,IX2(11+10*kk));
+		out_c = realizations2(:,:,IX2(1+10*kk));
 		out1 = imresize(out_c,1/current_resolution);
 		level = graythresh(out1);
 		out1 = im2bw(out1, level);
 		imshow(out1);
-		title([int2str(11+10*kk-1) 'th closest to TI'] );
+		title([int2str(1+10*kk-1) 'th closest to TI'] );
 	end
+	% the farthest one...
+	subplot(2,3,6);
+	out_c = realizations1(:,:,IX1(end));
+	out1 = imresize(out_c,1/current_resolution); 
+	level = graythresh(out1);
+	out1 = im2bw(out1, level);
+	imshow(out1);
+	title(['Farthest to TI, ' num2str(num_re2-1) '-th']);
 
 
 	%% the closest guys, of the third set of points.
-	figure;
+	figure('Name', ['Closest to ' NomAlg3], 'NumberTitle', 'off');
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	subplot(2,3,1);
 	out_c = realizations3(:,:,IX3(1));
@@ -258,7 +281,7 @@ for ii = 1:1		% size(resolutions, 2);
 	level = graythresh(out1);
 	out1 = im2bw(out1, level);
 	imshow(out1);
-	title(['Ti, SISIM, MR = ' int2str(current_resolution)]);
+	title(['TI: ' NomTI ]);
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	subplot(2,3,2);
 	out_c = realizations3(:,:,IX3(2));
@@ -268,15 +291,23 @@ for ii = 1:1		% size(resolutions, 2);
 	imshow(out1);
 	title('closest to Ti');
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-	for kk = 1:4
+	for kk = 1:min(3,fix(num_re3/10))
 		subplot(2,3,kk+2);
-		out_c = realizations3(:,:,IX3(11+10*kk));
+		out_c = realizations3(:,:,IX3(1+10*kk));
 		out1 = imresize(out_c,1/current_resolution);
 		level = graythresh(out1);
 		out1 = im2bw(out1, level);
 		imshow(out1);
-		title([int2str(11+10*kk-1) 'th closest to Ti'] );
+		title([int2str(1+10*kk-1) 'th closest to Ti'] );
 	end
+	% the farthest one...
+	subplot(2,3,6);
+	out_c = realizations1(:,:,IX1(end));
+	out1 = imresize(out_c,1/current_resolution); 
+	level = graythresh(out1);
+	out1 = im2bw(out1, level);
+	imshow(out1);
+	title(['Farthest to TI, ' num2str(num_re3-1) '-th']);
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	
 	

@@ -1,6 +1,6 @@
 function show2DModelVar3(DisMtrx1,DisMtrx2,DisMtrx3,out,re1,re2,re3)
 % this function is used for 2D case
-
+	
 % show the variability of the three sets of realizations
 % input: DisMtrx1 is the distance matrix for Dispat realizations
 % input: DisMtrx2 is the distance matrix for CCSIM realizations
@@ -40,7 +40,7 @@ for ii = 1:1										%1:3
 	figure;
 	scatter3(0,0,0, S(51), 'k','filled');
 	hold on;
-	
+
 	%% first set of points
 
 	ddd = squeeze(JS_dispat(i,:,:));
@@ -331,7 +331,6 @@ hold off;
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 	
-		
 	%% the last graph: the cummulative representativity
 	% it plots a cumulative sum of eigenvalues to show the degree of 
 	% representativity of the space in respect to the amount of dimensions

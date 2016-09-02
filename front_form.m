@@ -266,8 +266,8 @@ str_pat_size = get(hEditPatt,'String');
 pattern_size = str2num(str_pat_size);
 pattern_size = 20;
 
-% Process_Paths_Gabriel(fullPath_TI, pattern_size, path_A1, path_A2, path_A3);    
-Process_Paths_Gabriel(fullPath_TI, pattern_size, path_A1, path_A2);%, path_A3);    
+Process_Paths_Gabriel(fullPath_TI, pattern_size, path_A1, path_A2, path_A3);    
+% Process_Paths_Gabriel(fullPath_TI, pattern_size, path_A1, path_A2);%, path_A3);    
 
 
 

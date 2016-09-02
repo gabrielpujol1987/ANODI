@@ -1,5 +1,5 @@
 % test
-clc;
+% clc;
 clear all;
 close all;
 

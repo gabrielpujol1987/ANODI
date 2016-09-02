@@ -9,7 +9,6 @@ function show2DModelVar2(DisMtrx1,DisMtrx2,out,re1,re2)
 % input: re1 is DISPAT realizations: e.g. 101*101*50
 % input: re2 is CCSIM realizations
 
-
 %% with training image
 %% MDS
 
@@ -27,22 +26,23 @@ model_CCSIM = re2;
 model_CCSIM(:,:,51) = out;
 
 
-S = 30*ones(1,51); S(51) = 120;
 
+
+S = 30*ones(1,51); S(51) = 120;
 
 abc = [1,2,3,4,6];
 for ii = 1:1										%1:3
 	i = abc(ii);
 	
-	
+
 	
 	
 	figure;
 	scatter3(0,0,0, S(51), 'k','filled');
 	hold on;
-		
+
 	%% first set of points
-	
+
 	ddd = squeeze(JS_dispat(i,:,:));
 	
 	% get the new Coordinates for the n points in a new p-dimensional space
@@ -62,7 +62,7 @@ for ii = 1:1										%1:3
 	[d1,IX1] = sort(ddd(51,:));
 	% plotting
 	scatter3(x_MR,y_MR,z_MR, S, 'g','filled');
-		
+	
 	%% second set of points
 	
 	ddd = squeeze(JS_CCSIM(i,:,:));
@@ -83,14 +83,14 @@ for ii = 1:1										%1:3
 	[d2,IX2] = sort(ddd(51,:));
 	% plotting
 	scatter3(x_CCSIM,y_CCSIM,z_CCSIM, S,'b','filled');
-		
+	
 	%% third set of points
 
 %	ddd = squeeze(JS_sisim(i,:,:));
-
-
+	
+	
 %	[Y1_sisim,e_sisim] = cmdscale(double(squeeze(JS_sisim(i,:,:))));
-
+	
 % 	% get the new coordinates for every point, for plotting reasons...
 %	x_sisim = Y1_sisim(:,1); 
 % 	y_sisim = Y1_sisim(:,2); 
@@ -99,7 +99,7 @@ for ii = 1:1										%1:3
 %	x_sisim = x_sisim-x_sisim(51); 
 % 	y_sisim = y_sisim-y_sisim(51); 
 % 	z_sisim = z_sisim-z_sisim(51);
-
+	
 %	% sorting
 %	[d3,IX3] = sort(ddd(51,:));
 %	% plotting
@@ -329,7 +329,7 @@ hold off;
 % 		title([int2str(11+10*kk-1) 'th closest to Ti'] );
 % 	end
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-	
+
 	
 	%% the last graph: the cummulative representativity
 	% it plots a cumulative sum of eigenvalues to show the degree of 
