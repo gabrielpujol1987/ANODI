@@ -91,7 +91,12 @@ if ~(path_TI == 0)
     set(t, 'string', fileName_TI);
     
 % 	A = imread(fullPath_TI);
+
+	% TRY
 	A = read_eas_sq(fullPath_TI);		% read the TI
+	% CATCH
+	A = read_eas_cubic(fullPath_TI);
+	
 %     image(A);
 
     theAxe = findobj('Tag', 'axes1');

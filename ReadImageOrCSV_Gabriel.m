@@ -7,10 +7,18 @@ function image = ReadImageOrCSV_Gabriel(filePath)
 		image = csvread(filePath);
 		return;
 	elseif(isSGEMS)
+		try									% attempt to read the image as a 3D image.
+			image = read_eas_3D(filePath);		% read the TI
+		catch								% if treating it as 3D raised an error, then treat it as 2D.
 		image = read_eas_sq(filePath);		% read the TI
+		end
 		return;
 		
 	else % If this file filePath is an image file, read it. Else, throw error.
 		imfinfo(filePath);
 		image = im2double(imread(filePath));
+		if(size(image,3) > 1) 
+			image = BlackAndWhite_Gabriel(image); 
+			
+		end
 	end

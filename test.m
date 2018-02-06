@@ -69,8 +69,8 @@ re3=realization1;
 % show2DModelVar2(DisMtrx1,DisMtrx2,out,re1,re2);
 % show2DModelVar3(DisMtrx1,DisMtrx2,DisMtrx3,out,re1,re2,re3);
 
-% show2DModelVar2_Gabriel_Separated(DisMtrx1,DisMtrx2,out,re1,re2, 'nomTI', 'nomAlg1', 'nomAlg2');
-show2DModelVar3_Gabriel_Separated(DisMtrx1,DisMtrx2,DisMtrx3,out,re1,re2,re3, 'nomTI', 'nomAlg1', 'nomAlg2', 'nomAlg3');
+% show2DModelVar2_Gabriel_Separated(DisMtrx1,DisMtrx2,         out,re1,re2,     'nomTI', 'nomAlg1', 'nomAlg2');
+  show2DModelVar3_Gabriel_Separated(DisMtrx1,DisMtrx2,DisMtrx3,out,re1,re2,re3, 'nomTI', 'nomAlg1', 'nomAlg2', 'nomAlg3');
 
 %% show 3D case
 % clear all;

@@ -76,9 +76,9 @@ for ii = 1:1		% size(resolutions, 2);
 	y_re2 = Y1_re2(:, 2);
 	z_re2 = Y1_re2(:, 3);
 	% Centering the coordinates around the Training Image:
-	x_re2 = x_re2 - x_re2(num_re1);
-	y_re2 = y_re2 - y_re2(num_re1);
-	z_re2 = z_re2 - z_re2(num_re1);
+	x_re2 = x_re2 - x_re2(num_re2);
+	y_re2 = y_re2 - y_re2(num_re2);
+	z_re2 = z_re2 - z_re2(num_re2);
 
 	% Positions of the 'sorted' list, according to the distances to the TI
 	[~, IX2] = sort(ddd(num_re2, :));
@@ -264,7 +264,7 @@ for ii = 1:1		% size(resolutions, 2);
 	end
 	% the farthest one...
 	subplot(2,3,6);
-	out_c = realizations1(:,:,IX1(end));
+	out_c = realizations1(:,:,IX2(end));
 	out1 = imresize(out_c,1/current_resolution); 
 	level = graythresh(out1);
 	out1 = im2bw(out1, level);
@@ -302,7 +302,7 @@ for ii = 1:1		% size(resolutions, 2);
 	end
 	% the farthest one...
 	subplot(2,3,6);
-	out_c = realizations1(:,:,IX1(end));
+	out_c = realizations1(:,:,IX3(end));
 	out1 = imresize(out_c,1/current_resolution); 
 	level = graythresh(out1);
 	out1 = im2bw(out1, level);

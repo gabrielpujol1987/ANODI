@@ -2,22 +2,22 @@ function [X, Y, e, K, idx, prototype, MDS] = MYclassifyPatterns(rea, par)
 
 
 % ------------ INITIALIZATION ------------
-Patx = par.Patx;
-Paty = par.Paty;
-Patz = par.Patz;
-sN   = Patx*Paty*Patz;
-nr   = size(rea,4);
+Patx = par.Patx;		% Pattern size X					(20)
+Paty = par.Paty;		% Pattern size Y					(20)
+Patz = par.Patz;		% Pattern size Z					(20)
+sN   = Patx*Paty*Patz;	% amount of cells in the Pattern	(8000)
+nr   = size(rea,4);		% amount of Realizations			(30 or 50, depending)
 sV   = max(rea(:));
 
-Dimx = par.Dimx;
-Dimy = par.Dimy;
-Dimz = par.Dimz;
-mx   = par.mx;
-my   = par.my;
-mz   = par.mz;
+Dimx = par.Dimx;		% TI size X							(50 or 180, depending)
+Dimy = par.Dimy;		% TI size Y							(50 or 150, depending)
+Dimz = par.Dimz;		% TI size Z							(50 or 120, depending)
+mx   = par.mx;			% just 4							()
+my   = par.my;			% just 4							()
+mz   = par.mz;			% just 1  (WHY???)					()
 
-m1   = par.m1;
-clus = par.clus;
+m1   = par.m1;			% just 1							()
+clus = par.clus;		% just 50, looks like the amount of clusters for K-means.
 
 
 

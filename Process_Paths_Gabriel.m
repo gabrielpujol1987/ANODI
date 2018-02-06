@@ -52,11 +52,3 @@ else
     show2DModelVar2_Gabriel_Separated(DistMtrx1,DistMtrx2,TI,realizations1,realizations2,NomTI,NomAlg1,NomAlg2);
 % 	show2DModelVar2(DistMtrx1,DistMtrx2,TI,realizations1,realizations2);%,NomTI,NomAlg1,NomAlg2);
 end
-
-
-
-% show2DModelVar2_Gabriel(DistMtrx1,DistMtrx2,TI,realizations1,realizations2);
-% show2DModelVar3_Gabriel(DistMtrx1,DistMtrx2,DistMtrx3,TI,realizations1,realizations2,realizations3);
-
-
-
